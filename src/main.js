@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 
 require('vue2-animate/dist/vue2-animate.min.css')
-
+Vue.use(router)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

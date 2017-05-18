@@ -11,15 +11,18 @@
 </template>
 
 <script>
+import mixins from '@/mixins/mixins.js'
+
 export default {
   name: 'bubble',
   props: ['text'],
+  mixins: [mixins],
   data () {
     return {
       show: true,
       styleObject: {
-        left: this.rand() + 'px',
-        top: this.rand() + 'px'
+        left: this.getRandomNumberMinMax(10, this.getWindowWidth() - 210) + 'px',
+        top: this.getRandomNumberMinMax(10, this.getWindowHeight() - 210) + 'px'
       }
     }
   },
@@ -40,7 +43,9 @@ export default {
   -moz-border-radius: 50%;
   border-radius: 50%;
   border: 3px solid #314A5E;
-  position: relative
+  background-color: #42b983;
+  position: absolute;
+  box-shadow: -5px 5px 5px 0px #A895BC;
 }
 .bubble p {
   text-align: center;

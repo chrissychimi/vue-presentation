@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" :class="{small: showMenu}" @click="showMenu = !showMenu">
+    <img src="./assets/logo.png" :class="{small: shrinkVue}" @click="animateMenu">
     <transition-group name="bounceRight" tag="ul">
       <li v-if="showMenu" v-for="(topic, index) in topics" :key="index">
-        <router-link :id="topic.slug" :to="topic.slug">{{ topic.title }}</router-link>
+        <router-link :id="topic.slug" :to="{name: topic.slug}">{{ topic.title }}</router-link>
       </li>
     </transition-group>
     <router-view></router-view>
@@ -26,15 +26,22 @@ export default {
         {title: 'Test', slug: 'test'},
         {title: 'Explore', slug: 'explore'}
       ],
-      showMenu: false
+      showMenu: false,
+      shrinkVue: false
     }
   },
   methods: {
+    animateMenu () {
+      this.showMenu = !this.showMenu
+      this.$nextTick(() => {
+        this.shrinkVue = this.showMenu
+      })
+    }
   }
 }
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,6 +50,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+</style>
+<style scoped>
 img {
   width: 10%;
 }
