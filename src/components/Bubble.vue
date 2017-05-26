@@ -3,10 +3,14 @@
       enter-active-class="bounceInLeft"
       leave-active-class="bounceOutRight">
     <div class="bubble grow"
+         :class="classObject"
          :style="styleObject"
-         v-if="show" @dblclick="dismiss" @mouseover="showExample = true" @mouseout="showExample = false">
+         v-if="show" @click="showBig = true">
       <p>{{ text }}</p>
-      <component :is="example" v-show="showExample"></component>
+      <component :is="example" v-show="showBig"></component>
+      <button v-if="showBig" type="button" class="close" @click="dismiss" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
   </transition>
 </template>
@@ -21,10 +25,17 @@ export default {
   data () {
     return {
       show: true,
-      showExample: false,
+      showBig: false,
       styleObject: {
         left: this.getRandomNumberMinMax(10, this.getWindowWidth() - 210) + 'px',
         top: this.getRandomNumberMinMax(10, this.getWindowHeight() - 210) + 'px'
+      }
+    }
+  },
+  computed: {
+    classObject () {
+      return {
+        big: this.showBig
       }
     }
   },
@@ -39,13 +50,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .grow { transition: all .2s ease-in-out; }
-.grow:hover { 
+.grow.big { 
   z-index: 10;
   top: 50%!important;
   left: 50%!important;
   transform: translate(-50%, -50%) scale(3.1);
 }
-.grow:hover p {
+.grow.big p {
   padding-top: 20px;
 }
 .bubble {
@@ -64,5 +75,14 @@ export default {
   padding-top: 50px;
   padding-left: 20px;
   padding-right: 20px;
+}
+.close {
+  position: absolute;
+  top: 85%;
+  text-align: center;
+  margin-left: -5%;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
 }
 </style>
