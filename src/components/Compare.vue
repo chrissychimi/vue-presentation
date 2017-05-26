@@ -1,5 +1,5 @@
 <template>
-  <div class="compare">
+  <div id="compare">
     <h2><router-link :to="{name: 'angular'}">Angular</router-link></h2>
     <h2><router-link to="{name: 'react'}">React</router-link></h2>
   </div>
@@ -7,15 +7,7 @@
 
 <script>
 export default {
-  name: 'compare',
-  components: {
-  },
-  data () {
-    return {
-    }
-  },
-  methods: {
-  }
+  name: 'compare'
 }
 </script>
 

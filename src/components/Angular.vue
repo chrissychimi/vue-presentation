@@ -1,21 +1,30 @@
 <template>
   <div>
-    <div id="angular">
+    <div id="angular" class="compare">
       <h2>Angular</h2>
       <ul>
-        <li>Uses Typescript extensively.</li>
+        <li>Extensive use of Typescript</li>
         <li>One Right Way</li>
-        <li>Designed for large, complex apps.</li>
+        <li>Designed for large, complex apps</li>
       </ul>
     </div>
-    <div id="vuejs">
+    <div id="vuejs" class="compare">
       <h2>VueJS</h2>
       <ul>
-        <li>Doesn't require Typescript (but can use).</li>
-        <li>Smaller.</li>
-        <li>Relatively unopinionated.</li>
-        <li>Shallower learning curve.</li>
+        <li>Typescript optional.</li>
+        <li>Smaller</li>
+        <li>Relatively unopinionated</li>
+        <li>Shallower learning curve</li>
       </ul>
     </div>
   </div>
 </template>
+
+<style scoped>
+div.compare {
+  display: inline-block;
+}
+ul {
+  list-style: none;
+}
+</style>

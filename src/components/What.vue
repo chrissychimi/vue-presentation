@@ -1,5 +1,5 @@
 <template>
-  <div class="what">
+  <div id="what">
     <bubble v-for="(point, index) in points" :key="index" :text="point.title" :example="point.example"></bubble>
   </div>
 </template>
@@ -29,8 +29,6 @@ export default {
         {title: 'Single-file components'}
       ]
     }
-  },
-  methods: {
   }
 }
 </script>
