@@ -1,6 +1,9 @@
 <template>
   <div id="what">
-    <bubble v-for="(point, index) in points" :key="index" :text="point.title" :example="point.example"></bubble>
+    <bubble v-for="(point, index) in points" v-on:remove="pointRemove(index)" :key="index" :text="point.title" :example="point.example"></bubble>
+    <button v-if="points.length > 0" type="button" @click="shuffle" aria-label="Shuffle">
+      <span aria-hidden="true">Shuffle</span>
+    </button>
   </div>
 </template>
 
@@ -28,6 +31,14 @@ export default {
         {title: 'Directives', example: ExampleDirective},
         {title: 'Single-file components'}
       ]
+    }
+  },
+  methods: {
+    shuffle () {
+      return true
+    },
+    pointRemove (ind) {
+      this.points.splice(ind)
     }
   }
 }

@@ -42,6 +42,7 @@ export default {
   methods: {
     dismiss () {
       this.show = false
+      this.$emit('remove')
     }
   }
 }
