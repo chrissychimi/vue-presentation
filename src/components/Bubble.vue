@@ -5,10 +5,10 @@
     <div class="bubble grow"
          :class="classObject"
          :style="styleObject"
-         v-if="show" @click="showBig = true">
+         @click="showBig = true">
       <p>{{ text }}</p>
       <component :is="example" v-show="showBig"></component>
-      <button v-if="showBig" type="button" class="close" @click="dismiss" aria-label="Close">
+      <button v-if="showBig" type="button" class="close" @click.prevent="dismiss" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -20,16 +20,11 @@ import mixins from '@/mixins/mixins.js'
 
 export default {
   name: 'bubble',
-  props: ['text', 'example'],
+  props: ['text', 'example', 'rand'],
   mixins: [mixins],
   data () {
     return {
-      show: true,
-      showBig: false,
-      styleObject: {
-        left: this.getRandomNumberMinMax(10, this.getWindowWidth() - 210) + 'px',
-        top: this.getRandomNumberMinMax(10, this.getWindowHeight() - 210) + 'px'
-      }
+      showBig: false
     }
   },
   computed: {
@@ -37,11 +32,16 @@ export default {
       return {
         big: this.showBig
       }
+    },
+    styleObject () {
+      return {
+        left: this.getRandomNumberMinMax(10 - this.rand, this.getWindowWidth() - 210) + 'px',
+        top: this.getRandomNumberMinMax(10 - this.rand, this.getWindowHeight() - 210) + 'px'
+      }
     }
   },
   methods: {
     dismiss () {
-      this.show = false
       this.$emit('remove')
     }
   }

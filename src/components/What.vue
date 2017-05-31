@@ -1,7 +1,7 @@
 <template>
   <div id="what">
-    <bubble v-for="(point, index) in points" v-on:remove="pointRemove(index)" :key="index" :text="point.title" :example="point.example"></bubble>
-    <button v-if="points.length > 0" type="button" @click="shuffle" aria-label="Shuffle">
+    <bubble v-for="point in points" v-on:remove="pointRemove(point.id)" :key="point.id" :text="point.title" :example="point.example" :rand="random"></bubble>
+    <button id="shuffle-button" v-if="points.length > 0" type="button" @click="shuffle" aria-label="Shuffle">
       <span aria-hidden="true">Shuffle</span>
     </button>
   </div>
@@ -12,6 +12,7 @@ import Bubble from './Bubble'
 import ExampleReactivity from './ExampleReactivity'
 import ExampleFilter from './ExampleFilter'
 import ExampleDirective from './ExampleDirective'
+import mixins from '@/mixins/mixins.js'
 
 export default {
   name: 'what',
@@ -21,24 +22,34 @@ export default {
     ExampleFilter,
     ExampleDirective
   },
+  mixins: [mixins],
   data () {
     return {
       points: [
-        {title: 'Incrementally adoptable UI framework'},
-        {title: 'Use a little or use a lot'},
-        {title: 'Reactivity', example: ExampleReactivity},
-        {title: 'Text filtering', example: ExampleFilter},
-        {title: 'Directives', example: ExampleDirective},
-        {title: 'Single-file components'}
-      ]
+        {id: 0, title: 'Incrementally adoptable UI framework'},
+        {id: 1, title: 'Use a little or use a lot'},
+        {id: 2, title: 'Reactivity', example: ExampleReactivity},
+        {id: 3, title: 'Text filtering', example: ExampleFilter},
+        {id: 4, title: 'Directives', example: ExampleDirective},
+        {id: 5, title: 'Single-file components'}
+      ],
+      random: null
     }
+  },
+  created () {
+    this.random = Math.random()
   },
   methods: {
     shuffle () {
-      return true
+      this.points = this.points.sort((a, b) => {
+        return this.getRandomNumberMinMax(-1, 1)
+      })
+      this.random = Math.random()
     },
-    pointRemove (ind) {
-      this.points.splice(ind)
+    pointRemove (id) {
+      this.points = this.points.filter((el, ind) => {
+        return el.id !== id
+      })
     }
   }
 }
@@ -46,5 +57,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+#shuffle-button {
+  position: absolute;
+  bottom: 15px;
+}
 </style>
