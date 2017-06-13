@@ -1,17 +1,19 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
+import store from '@/store'
 import What from '@/components/What'
 import Compare from '@/components/Compare'
 import Angular from '@/components/Angular'
 import React from '@/components/React'
 import Dive from '@/components/Dive'
-import Store from '@/components/Store'
+import StoreState from '@/components/StoreState'
+import VModel from '@/components/VModel'
 import Test from '@/components/Test'
 import Explore from '@/components/Explore'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+const router = new VueRouter({
   routes: [
     {
       path: '/',
@@ -43,9 +45,14 @@ export default new Router({
       component: Dive
     },
     {
-      path: '/store',
-      name: 'store',
-      component: Store
+      path: '/store-state',
+      name: 'store-state',
+      component: StoreState
+    },
+    {
+      path: '/store-state/vmodel',
+      name: 'vmodel',
+      component: VModel
     },
     {
       path: '/test',
@@ -59,3 +66,14 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'index') {
+    store.commit('setMenuStateInitial')
+  } else {
+    store.commit('setMenuStateUnobtrusive')
+  }
+  next()
+})
+
+export default router

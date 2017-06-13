@@ -18,7 +18,7 @@ describe('ExampleFilter.vue mounted', () => {
   it('should return an alternately capitalized string on filter one', () => {
     expect(vm.$options.filters.one('the monkey')).to.equal('tHe mOnKeY')
   })
-  it.skip('should return a wingdinged string on filter two', () => {
+  it('should return a wingdinged string on filter two', () => {
     expect(vm.$options.filters.two('the monkey')).to.equal('❔❈❅✀❍❏❎❋❅❙')
   })
   it('should return a reversed string on filter three', () => {

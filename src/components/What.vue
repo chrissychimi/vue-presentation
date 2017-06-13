@@ -1,9 +1,7 @@
 <template>
   <div id="what">
     <bubble v-for="point in points" v-on:remove="pointRemove(point.id)" :key="point.id" :text="point.title" :example="point.example" :rand="random"></bubble>
-    <button id="shuffle-button" v-if="points.length > 0" type="button" @click="shuffle" aria-label="Shuffle">
-      <span aria-hidden="true">Shuffle</span>
-    </button>
+    <img id="shuffle-button" v-if="points.length > 0" @click="shuffle" aria-label="Shuffle" src="../assets/shuffle.svg"/>
   </div>
 </template>
 

@@ -4,7 +4,7 @@
     <p>Thing one: {{ thing | one }}</p>
     <p>Thing two: {{ thing | two }}</p>
     <p>Thing three: {{ thing | three }}</p>
-    <p>Thing three: {{ thing | one | two | three }}</p>
+    <p>Thing four: {{ thing | one | two | three }}</p>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     two (value) {
       if (!value) return ''
       return value.split('').map((x) => {
-        return String.fromCharCode(x.codePointAt(0) + 9952)
+        return String.fromCharCode(x.charCodeAt(0) + 9952)
       }).join('')
     },
     three (value) {
