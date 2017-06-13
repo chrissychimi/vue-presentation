@@ -1,5 +1,12 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
+import VueRouter from 'vue-router'
 import App from '@/App'
+import store from '@/store'
+import router from '@/router'
+
+Vue.use(Vuex)
+Vue.use(VueRouter)
 
 describe('App.vue unmounted', () => {
   it('should have a data function', () => {
@@ -10,7 +17,7 @@ describe('App.vue mounted', () => {
   var vm
   beforeEach(() => {
     const Constructor = Vue.extend({ ...App })
-    vm = new Constructor().$mount()
+    vm = new Constructor({store, router}).$mount()
   })
   afterEach(() => {
     vm.$destroy

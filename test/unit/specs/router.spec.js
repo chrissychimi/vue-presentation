@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import store from '@/store'
 import router from '@/router'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-describe('beforeEach', () => {
+describe.skip('beforeEach', () => {
   var commit, next
 
   beforeEach(() => {
@@ -28,7 +28,7 @@ describe('beforeEach', () => {
       expect(commit).to.have.been.calledWithExactly('setMenuStateInitial')
     })
 
-    it.skip('should call next', () => {
+    it('should call next', () => {
       expect(next).to.have.been.calledWithExactly({})
     })
   })
@@ -43,7 +43,7 @@ describe('beforeEach', () => {
       expect(commit).to.have.been.calledWithExactly('setMenuStateUnobtrusive')
     })
 
-    it.skip('should call next', () => {
+    it('should call next', () => {
       expect(next).to.have.been.calledWithExactly()
     })
   })
