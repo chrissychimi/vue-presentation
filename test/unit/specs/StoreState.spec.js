@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import StoreState from '@/components/StoreState'
 
 describe('StoreState.vue unmounted', () => {

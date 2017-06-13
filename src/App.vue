@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'app',
@@ -31,11 +31,9 @@ export default {
       ]
     }
   },
-  computed: {
-    menuState () {
-      return this.$store.state.menuState
-    }
-  },
+  computed: mapState([
+    'menuState'
+  ]),
   methods: {
     ...mapMutations([
       'setMenuStateInitial',
