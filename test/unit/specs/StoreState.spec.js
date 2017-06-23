@@ -1,5 +1,9 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import StoreState from '@/components/StoreState'
+import router from '@/router'
+
+Vue.use(VueRouter)
 
 describe('StoreState.vue unmounted', () => {
   it('should have a data function', () => {
@@ -10,13 +14,12 @@ describe('StoreState.vue mounted', () => {
   var vm
   beforeEach(() => {
     const Constructor = Vue.extend({ ...StoreState })
-    vm = new Constructor().$mount()
+    vm = new Constructor({router}).$mount()
   })
   afterEach(() => {
     vm.$destroy
   })
-  it('should have a populated listsToDisplay array', () => {
-  	let num = vm.$data.listsToDisplay.length
-    expect(num).to.be.above(0)
+  it('should have a populated prosandcons array', () => {
+    expect(vm.$data.prosandcons.length).to.be.above(0)
   })
 })

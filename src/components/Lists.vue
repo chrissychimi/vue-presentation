@@ -1,6 +1,6 @@
 <template>
-	<div id="lists">
-    <list v-for="(list, index) in listsToDisplay" :key="index" :listItems="list.items" :listId="list.id" :header="list.header" :style="{ width: width + '%', 'border-color': list.borderColor }"></list>
+	<div id="lists" :style="{ 'grid-template-columns': 'repeat(' + cols + ', 1fr)' }">
+    <list v-for="(list, index) in listsToDisplay" :key="index" :listItems="list.items" :listId="list.id" :header="list.header" :style="{ 'border-color': list.borderColor, 'grid-column': (index % cols) + 1 }"></list>
   </div>
 </template>
 
@@ -8,28 +8,22 @@
 import List from './List'
 export default {
   name: 'lists',
-  props: ['listsToDisplay'],
+  props: ['listsToDisplay', 'cols'],
   components: {
     List
-  },
-  computed: {
-    width () {
-      return (100 / this.listsToDisplay.length) - 5
-    }
   }
 }
 </script>
 
 <style scoped>
 #lists {
-  height: 250px;
+  display: grid;
+  grid-gap: 10px;
+  grid-auto-rows: minmax(250px, auto);
+  margin-top: 10px;
 }
 .list {
-  display: inline-block;
   vertical-align: top;
   border-style: inset;
-  height: 100%;
-  margin-left: 2%;
-  margin-right: 2%;
 }
 </style>

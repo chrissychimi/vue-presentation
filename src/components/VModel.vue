@@ -4,10 +4,12 @@
       <div id="local" class="local">
         <h2>Local State</h2>
         <p>Beloved sensates:<br/>{{ sensates }}</p>
+        <img v-for="sensate in sensates" :src="'/static/' +  sensate.toLowerCase() + '.jpeg'" width="150px"/>
       </div>
       <div id="store" class="global">
         <h2>Store State</h2>
         <p>Beloved sapiens:<br/>{{ sapiens }}</p>
+        <img v-for="sapien in sapiens" :src="'/static/' +  sapien.toLowerCase() + '.jpeg'" width="150px"/>
       </div>
     </div>
     <div id="local-circle" class="circle">
@@ -138,10 +140,10 @@ export default {
   background-color: aliceblue;
 }
 #local-circle {
-  left: 10%;
+  left: 30%;
 ;
 }
 #global-circle {
-  right: 10%;
+  right: 30%;
 }
 </style>

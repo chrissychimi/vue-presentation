@@ -1,6 +1,6 @@
 <template>
   <div id="compare-angular">
-    <lists :listsToDisplay="listsToDisplay"></lists>
+    <lists :listsToDisplay="listsToDisplay" :cols="2"></lists>
   </div>
 </template>
 

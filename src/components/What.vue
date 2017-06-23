@@ -1,6 +1,8 @@
 <template>
   <div id="what">
-    <bubble v-for="point in points" v-on:remove="pointRemove(point.id)" :key="point.id" :text="point.title" :example="point.example" :rand="random"></bubble>
+    <div id="bubbles">
+      <bubble v-for="point in points" v-on:remove="pointRemove(point.id)" :key="point.id" :text="point.title" :example="point.example" :list="point.list" :rand="random"></bubble>
+    </div>
     <img id="shuffle-button" v-if="points.length > 0" @click="shuffle" aria-label="Shuffle" src="../assets/shuffle.svg"/>
   </div>
 </template>
@@ -25,11 +27,11 @@ export default {
     return {
       points: [
         {id: 0, title: 'Incrementally adoptable UI framework'},
-        {id: 1, title: 'Use a little or use a lot'},
-        {id: 2, title: 'Reactivity', example: ExampleReactivity},
-        {id: 3, title: 'Text filtering', example: ExampleFilter},
-        {id: 4, title: 'Directives', example: ExampleDirective},
-        {id: 5, title: 'Single-file components'}
+        {id: 1, title: 'Reactivity', example: ExampleReactivity},
+        {id: 2, title: 'Text filtering', example: ExampleFilter},
+        {id: 3, title: 'Directives', example: ExampleDirective},
+        {id: 4, title: 'Single-file components', list: ['html template', 'javascript', 'css']},
+        {id: 5, title: 'Reusable components'}
       ],
       random: null
     }

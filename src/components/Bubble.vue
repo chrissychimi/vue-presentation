@@ -7,6 +7,9 @@
          :style="styleObject"
          @click="showBig = true">
       <p>{{ text }}</p>
+      <ul v-show="showBig">
+        <li v-for="item in list">{{ item }}</li>
+      </ul>
       <component :is="example" v-show="showBig"></component>
       <button v-if="showBig" type="button" class="close" @click.prevent="dismiss" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -20,7 +23,7 @@ import mixins from '@/mixins/mixins.js'
 
 export default {
   name: 'bubble',
-  props: ['text', 'example', 'rand'],
+  props: ['text', 'example', 'list', 'rand'],
   mixins: [mixins],
   data () {
     return {
@@ -36,7 +39,7 @@ export default {
     styleObject () {
       return {
         left: this.getRandomNumberMinMax(10 - this.rand, this.getWindowWidth() - 210) + 'px',
-        top: this.getRandomNumberMinMax(10 - this.rand, this.getWindowHeight() - 210) + 'px'
+        top: this.getRandomNumberMinMax(10 - this.rand, this.getWindowHeight() - 280) + 'px'
       }
     }
   },
@@ -71,11 +74,17 @@ export default {
   position: absolute;
   box-shadow: -5px 5px 5px 0px #A895BC;
 }
+.bubble p, .bubble li {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .bubble p {
   text-align: center;
   padding-top: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
+}
+.bubble li {
+  font-size: 40%;
+  text-align: left;
 }
 .close {
   position: absolute;

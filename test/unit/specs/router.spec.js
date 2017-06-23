@@ -1,50 +1,46 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import store from '@/store'
 import router from '@/router'
 
+Vue.use(Vuex)
 Vue.use(VueRouter)
 
-describe.skip('beforeEach', () => {
-  var commit, next
-
+describe('beforeEach', () => {
+  var vm
   beforeEach(() => {
-    commit = sinon.stub(store, 'commit')
-    next = sinon.stub()
-  })
-
-  afterEach(() => {
-    commit.restore()
-  })
-
-  describe('when navigating to index', () => {
-    var to = {name: 'index'}
-
-    beforeEach(() => {
-      router.push(to)
-    })
-
-    it('should set menu to the initial state', () => {
-      expect(commit).to.have.been.calledWithExactly('setMenuStateInitial')
-    })
-
-    it('should call next', () => {
-      expect(next).to.have.been.calledWithExactly({})
+    vm = new Vue({
+      el: document.createElement('div'),
+      store: store,
+      router: router,
+      template: '<router-view></router-view>'
     })
   })
 
   describe('when navigating somewhere else', () => {
     var to = {name: 'test'}
     beforeEach(() => {
-      router.push(to)
+      vm.$router.push(to)
     })
 
     it('should set menu to unobtrusive state', () => {
-      expect(commit).to.have.been.calledWithExactly('setMenuStateUnobtrusive')
+      expect(vm.$store.state.menuState).to.eql({
+        iconMinimized: true,
+        navShown: false})
+    })
+  })
+
+  describe('when navigating to index', () => {
+    var to = {name: 'index'}
+    beforeEach(() => {
+      vm.$router.push(to)
     })
 
-    it('should call next', () => {
-      expect(next).to.have.been.calledWithExactly()
+    it('should set menu to the initial state', () => {
+      expect(vm.$store.state.menuState).to.eql({
+        iconMinimized: false,
+        navShown: false})
     })
   })
 })

@@ -31,15 +31,20 @@ describe('App.vue mounted', () => {
       return el.hasOwnProperty('title') && el.title.length > 0
     }).length).to.equal(arr.length)
   })
-  it.skip('should reset showMenu and shrinkVue on animateMenu', done => {
-    let sShow = vm.$data.showMenu
+  it('should set menuState correctly on animate menu', () => {
+    vm.animateMenu(true)
 
-    vm.animateMenu()
+    expect(vm.$store.state.menuState).to.eql({
+      iconMinimized: false,
+      navShown: false
+    })
+  })
+  it('should set menuState correctly on animate menu', () => {
+    vm.animateMenu(false)
 
-    Vue.nextTick(() => {
-      expect(vm.$data.showMenu).to.equal(!sShow)
-      expect(vm.$data.shrinkVue).to.equal(!sShow)
-      done()
+    expect(vm.$store.state.menuState).to.eql({
+      iconMinimized: true,
+      navShown: true
     })
   })
 })

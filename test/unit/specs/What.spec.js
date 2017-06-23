@@ -21,7 +21,7 @@ describe('What.vue mounted', () => {
   it('should have a bubble for every item in points array', () => {
     let num = vm.$data.points.length
 
-    expect(vm.$el.children.length).to.equal(num + 1)
+    expect(vm.$el.childNodes[0].children.length).to.equal(num)
   })
   it('should have a title for every point', () => {
     let arr = vm.$data.points

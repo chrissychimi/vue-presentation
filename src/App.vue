@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <img src="./assets/logo.png" :class="{small: menuState.iconShrunk, right: menuState.iconMinimized}" @click="animateMenu">
+      <img src="./assets/logo.png" :class="{small: menuState.iconMinimized}" @click="animateMenu(menuState.navShown)">
       <transition-group name="bounceRight" tag="ul" id="topic-list">
         <li v-if="menuState.navShown" v-for="(topic, index) in topics" :key="index">
           <router-link :id="topic.slug" :to="{name: topic.slug}">{{ topic.title }}</router-link>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'app',
@@ -26,8 +26,7 @@ export default {
         {title: 'Compare', slug: 'compare'},
         {title: 'Dive In', slug: 'dive'},
         {title: 'Store', slug: 'store-state'},
-        {title: 'Test', slug: 'test'},
-        {title: 'Explore', slug: 'explore'}
+        {title: 'Test', slug: 'test'}
       ]
     }
   },
@@ -35,16 +34,16 @@ export default {
     'menuState'
   ]),
   methods: {
-    ...mapMutations([
+    ...mapActions([
       'setMenuStateInitial',
       'setMenuStateNavigate',
       'setMenuStateUnobtrusive'
     ]),
-    animateMenu () {
-      if (this.menuState.navShown) {
-        this.$store.commit('setMenuStateInitial')
+    animateMenu (navShown) {
+      if (navShown) {
+        this.$store.dispatch('setMenuStateInitial')
       } else {
-        this.$store.commit('setMenuStateNavigate')
+        this.$store.dispatch('setMenuStateNavigate')
       }
     }
   }
@@ -64,14 +63,12 @@ export default {
 <style scoped>
 img {
   width: 10%;
+  top: 10px;
+  -webkit-transition: width 2s;
+  transition: width 2s;
 }
 img.small {
   width: 3%;
-}
-img.right {
-  position: absolute;
-  top: 5px;
-  right: 5px;
 }
 ul {
   list-style-type: none;

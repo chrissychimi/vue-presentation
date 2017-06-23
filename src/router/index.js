@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import store from '@/store'
 import What from '@/components/What'
@@ -9,8 +10,8 @@ import Dive from '@/components/Dive'
 import StoreState from '@/components/StoreState'
 import VModel from '@/components/VModel'
 import Test from '@/components/Test'
-import Explore from '@/components/Explore'
 
+Vue.use(Vuex)
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -58,20 +59,15 @@ const router = new VueRouter({
       path: '/test',
       name: 'test',
       component: Test
-    },
-    {
-      path: '/explore',
-      name: 'explore',
-      component: Explore
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   if (to.name === 'index') {
-    store.commit('setMenuStateInitial')
+    store.dispatch('setMenuStateInitial')
   } else {
-    store.commit('setMenuStateUnobtrusive')
+    store.dispatch('setMenuStateUnobtrusive')
   }
   next()
 })

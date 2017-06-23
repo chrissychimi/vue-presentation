@@ -43,4 +43,7 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+li:last-of-type {
+  font-weight: bold;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="compare-react">
-    <lists :listsToDisplay="listsToDisplay"></lists>
+    <lists :listsToDisplay="listsToDisplay" :cols="2"></lists>
   </div>
 </template>
 
@@ -24,7 +24,8 @@ export default {
             {text: 'CSS may be complicated, CSS-in-JS', show: false},
             {text: 'Richer ecosystem of developers', show: false},
             {text: 'Native support for mobile apps', show: false},
-            {text: 'Embraces functional programming and immutability (although with Vuex Vue becomes more like this)', show: false}
+            {text: 'Embraces functional programming and immutability (although with Vuex Vue becomes more like this)', show: false},
+            {text: 'Created and maintained by Facebook developers', show: false}
           ]
         },
         {
@@ -32,8 +33,10 @@ export default {
           header: 'VueJS',
           borderColor: '#2c3e50',
           items: [
-            {text: 'Optimization (keeps track of which children depend on which props and doesn\'t re-render needlessly)', show: false},
             {text: 'Write HTML. No need to translate the familiar.', show: false},
+            {text: 'Templates are generally easier to read and write', show: false},
+            {text: 'Templates are harder to debug and test', show: false},
+            {text: 'Optimization (keeps track of which children depend on which props and doesn\'t re-render needlessly)', show: false},
             {text: 'Migrating existing projects. You could bring static HTML pages right into Vue, adding reactivity and other functionality incrementally.', show: false},
             {text: 'Easier for non-dev designers to understand', show: false},
             {text: 'CSS is easy and scopable (unique data attributes)', show: false},
@@ -41,7 +44,8 @@ export default {
             {text: 'CLI that allows user templates (React is working on this)', show: false},
             {text: 'Shallower learning curve', show: false},
             {text: 'Working with Weex (Alibaba) to develop cross-platform support', show: false},
-            {text: 'Mutability does have some benefits, particularly for readability', show: false}
+            {text: 'Mutability does have some benefits, particularly for readability', show: false},
+            {text: 'Created and maintained by a single developer', show: false}
           ]
         }
       ]

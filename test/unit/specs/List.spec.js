@@ -1,5 +1,9 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import List from '@/components/List'
+import router from '@/router'
+
+Vue.use(VueRouter)
 
 describe.skip('List.vue unmounted', () => {
   it('should have a data function', () => {
@@ -10,7 +14,7 @@ describe.skip('List.vue mounted', () => {
   var vm
   beforeEach(() => {
     const Constructor = Vue.extend({ ...List })
-    vm = new Constructor().$mount()
+    vm = new Constructor({router}).$mount()
   })
   afterEach(() => {
     vm.$destroy

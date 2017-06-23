@@ -28,7 +28,11 @@ export default {
           header: 'Unit Testing',
           borderColor: 'orange',
           items: [
-            {text: 'Karma/mocha/chai/sinon', show: true},
+            {text: 'Karma: test environment', externalLinks: ['https://karma-runner.github.io/1.0/intro/how-it-works.html'], show: false},
+            {text: 'Mocha: test framework', externalLinks: ['https://mochajs.org/#getting-started'], show: false},
+            {text: 'Chai: test assertion library', externalLinks: ['http://chaijs.com/api/bdd/'], show: false},
+            {text: 'Sinon: test mocks and spies', externalLinks: ['http://sinonjs.org/releases/v2.3.5/spies/', 'https://github.com/domenic/sinon-chai'], show: false},
+            {text: 'Istanbul: code coverage reporter', show: false},
             {text: 'Vue.nextTick()', show: false}
           ]
         }
